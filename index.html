@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Manage Screens Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: #0f172a;
+        background: #f8fafc;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        width: min(720px, 90vw);
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 20px 80px rgba(15, 23, 42, 0.15);
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        margin-top: 0;
+        color: #475569;
+      }
+
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 999px;
+        padding: 0.75rem 1.75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      #status {
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        background: #f1f5f9;
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+
+      #screens {
+        margin-top: 1.5rem;
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .screen {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1rem;
+        background: #f8fafc;
+      }
+
+      .screen h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .screen span {
+        display: block;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>
+        Manage Screens Permission
+        <span id="status">checking…</span>
+      </h1>
+      <p>
+        Click the button below to request access to the Window Management API
+        (a.k.a. manage screens). Once granted, every connected display will be
+        listed with its geometry and whether it is the primary screen.
+      </p>
+      <button id="requestBtn">Request access &amp; list screens</button>
+      <section id="screens"></section>
+    </main>
+
+    <script src="src/index-inline.js"></script>
+  </body>
+  </html>

@@ -17,6 +17,24 @@ const manifestConfig = {
   action: {
       default_popup: "src/ui/action-popup/index.html"
   },
+	content_security_policy: {
+		extension_pages:
+			"script-src 'self' http://localhost:5173;",
+	},
+  content_scripts: [
+    {
+      matches: ["<all_urls>"],
+      js: ["src/content-script/index.js"],
+      run_at: "document_start",
+      all_frames: true
+    }
+  ],
+  web_accessible_resources: [
+    {
+      resources: ["src/content-script/index.js"],
+      matches: ["<all_urls>"],
+    },
+  ],
 } satisfies ManifestV3Export;
 
 export default manifestConfig;

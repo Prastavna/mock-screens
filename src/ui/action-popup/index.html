@@ -25,10 +25,43 @@
       button:hover {
         background: #f6f6f6;
       }
+
+      .sample {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      pre {
+        margin: 0;
+        background: #f4f4f5;
+        border-radius: 6px;
+        padding: 12px;
+        overflow-x: auto;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, SFMono-Regular, Menlo, Monaco,
+          Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      .output {
+        font-size: 12px;
+        color: #111;
+        background: #fafafa;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+        padding: 8px;
+        min-height: 42px;
+        white-space: pre-wrap;
+      }
     </style>
   </head>
   <body>
-    <button id="addBorder" type="button">Add Red Border</button>
+    <button id="overrideScreens" type="button">Override getScreenDetails</button>
     <script type="module" src="./popup.js"></script>
   </body>
 </html>
