@@ -1,60 +1,54 @@
 const overrideButton = document.getElementById('overrideScreens');
+const REQUEST_TYPE = 'REQUEST_FORCE_SCREENS_OVERRIDE';
+const DEFAULT_LABEL = 'Override getScreenDetails';
+
+const getActiveTab = () =>
+  new Promise((resolve, reject) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve(tabs?.[0]);
+    });
+  });
+
+const sendOverrideRequest = (tabId) =>
+  new Promise((resolve, reject) => {
+    chrome.tabs.sendMessage(tabId, { type: REQUEST_TYPE }, (response) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+        return;
+      }
+
+      resolve(response);
+    });
+  });
 
 overrideButton?.addEventListener('click', async () => {
-  try {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!overrideButton) {
+    return;
+  }
 
+  overrideButton.disabled = true;
+  overrideButton.textContent = 'Requesting override...';
+
+  try {
+    const tab = await getActiveTab();
     if (!tab?.id) {
-      console.error('Force Screens: Unable to find the active tab.');
-      return;
+      throw new Error('No active tab found');
     }
 
-    await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      world: 'MAIN',
-      func: () => {
-        const isWindows = navigator.userAgent.toLowerCase().includes('windows');
-
-        if (!isWindows) {
-          console.warn('Force Screens: getScreenDetails override is only applied on Windows.');
-          return;
-        }
-
-        const fakeScreen = {
-          availHeight: 1080,
-          availWidth: 1920,
-          colorDepth: 24,
-          height: 1080,
-          width: 1920,
-          pixelDepth: 24,
-          isExtended: false,
-          isPrimary: true,
-          label: 'Fake Screen 1',
-          devicePixelRatio: 1
-        };
-
-        const fakeScreenDetails = {
-          currentScreen: fakeScreen,
-          screens: [fakeScreen],
-          onchange: null,
-          addEventListener: () => {},
-          removeEventListener: () => {},
-          dispatchEvent: () => false
-        };
-
-        const overrideFn = async () => fakeScreenDetails;
-        Object.defineProperty(overrideFn, 'name', { value: 'forceScreensGetScreenDetails' });
-
-        Object.defineProperty(window, 'getScreenDetails', {
-          value: overrideFn,
-          writable: false,
-          configurable: true
-        });
-
-        console.info('Force Screens: window.getScreenDetails has been overridden.');
-      }
-    });
+    await sendOverrideRequest(tab.id);
+    overrideButton.textContent = 'Override requested ✅';
   } catch (error) {
-    console.error('Force Screens: Failed to override getScreenDetails.', error);
+    console.error('Force Screens: failed to request override', error);
+    overrideButton.textContent = 'Request failed, retry?';
+  } finally {
+    setTimeout(() => {
+      overrideButton.disabled = false;
+      overrideButton.textContent = DEFAULT_LABEL;
+    }, 1500);
   }
 });

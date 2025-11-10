@@ -76,9 +76,9 @@ async function requestScreens() {
     renderScreens(details.screens);
 
     // Keep the UI updated if displays are added/removed.
-    details.addEventListener("screenschange", () => {
-      renderScreens(details.screens);
-    });
+    // details.addEventListener("screenschange", () => {
+    //   renderScreens(details.screens);
+    // });
   } catch (error) {
     console.error("Failed to get screen details", error);
     screenList.innerHTML = `<p style="color:#dc2626;">${

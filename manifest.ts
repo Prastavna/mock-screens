@@ -12,7 +12,7 @@ const manifestConfig = {
   //   "48": "icon48.png",
   //   "128": "icon128.png",
   // },
-  permissions: ["scripting", "activeTab"],
+  permissions: ["scripting", "activeTab", "tabs"],
   host_permissions: ["<all_urls>"],
   action: {
       default_popup: "src/ui/action-popup/index.html"
@@ -24,14 +24,15 @@ const manifestConfig = {
   content_scripts: [
     {
       matches: ["<all_urls>"],
-      js: ["src/content-script/index.js"],
-      run_at: "document_start",
-      all_frames: true
+      js: ["src/content-script/injector.js"],
+      run_at: "document_idle",
+      all_frames: true,
+      // world: "MAIN"
     }
   ],
   web_accessible_resources: [
     {
-      resources: ["src/content-script/index.js"],
+      resources: ["src/content-script/override.js"],
       matches: ["<all_urls>"],
     },
   ],
