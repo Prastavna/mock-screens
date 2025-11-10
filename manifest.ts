@@ -24,7 +24,7 @@ const manifestConfig = {
   content_scripts: [
     {
       matches: ["<all_urls>"],
-      js: ["src/content-script/injector.js"],
+      js: ["src/content-script/injector.ts"],
       run_at: "document_idle",
       all_frames: true,
       // world: "MAIN"
@@ -32,7 +32,7 @@ const manifestConfig = {
   ],
   web_accessible_resources: [
     {
-      resources: ["src/content-script/override.js"],
+      resources: ["src/content-script/override.ts"],
       matches: ["<all_urls>"],
     },
   ],

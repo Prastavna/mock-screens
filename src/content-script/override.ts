@@ -4,15 +4,15 @@
 
   console.log("hellllll")
   
-  const FAKE_SCREEN_COUNT = 2; // Change this to your desired number
+  const FAKE_SCREEN_COUNT = 3; // Change this to your desired number
   
   // Override getScreenDetails
   if (window.getScreenDetails) {
-    // const originalGetScreenDetails = window.getScreenDetails.bind(window);
+    const originalGetScreenDetails = window.getScreenDetails.bind(window);
     
   console.log("hellllll1")
     window.getScreenDetails = async function() {
-      // const realScreens = await originalGetScreenDetails();
+      const realScreens = await originalGetScreenDetails();
       
       // Create fake screen objects
       console.log("hellllll2")
@@ -30,7 +30,7 @@
           isPrimary: i === 0,
           label: `Screen ${i + 1}`
         })),
-        // currentScreen: realScreens.currentScreen
+        currentScreen: realScreens.currentScreen
       };
       
       return fakeScreens;
