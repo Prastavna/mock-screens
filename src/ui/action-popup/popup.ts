@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("screenForm");
 
   if (form) {
-    // Populate form fields with saved values
     const savedScreenName = localStorage.getItem("screenName") || "Built-in display";
     const savedScreenCount = localStorage.getItem("screenCount") || "1";
 
@@ -12,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (screenNameInput) screenNameInput.value = savedScreenName;
     if (screenCountInput) screenCountInput.value = savedScreenCount;
 
-    // Handle form submission
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -20,11 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const screenCount = screenCountInput.value;
         const screenName = screenNameInput.value;
 
-        // Save values to localStorage
         localStorage.setItem("screenName", screenName);
         localStorage.setItem("screenCount", screenCount);
 
-        console.log(`Screen name: ${screenName}, Number of screens: ${screenCount}`);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+          const tabId = tabs[0].id;
+          if(tabId) {
+            chrome.tabs.sendMessage(tabId, {
+              action: "mock-screens",
+              payload: {
+                numOfScreens: screenCount,
+                firstScreenName: screenName
+              }
+            });
+          }
+        });
       } else {
         console.error("Form inputs not found.");
       }

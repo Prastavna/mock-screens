@@ -27,7 +27,6 @@ const manifestConfig = {
       js: ["src/content-script/injector.ts"],
       run_at: "document_idle",
       all_frames: true,
-      // world: "MAIN"
     }
   ],
   web_accessible_resources: [
