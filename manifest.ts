@@ -14,24 +14,23 @@ const manifestConfig = {
     "72": "icon72.png",
     "96": "icon96.png",
     "144": "icon144.png",
-    "192": "icon192.png"
+    "192": "icon192.png",
   },
   permissions: ["scripting", "activeTab", "tabs"],
   host_permissions: ["<all_urls>"],
   action: {
-      default_popup: "src/ui/action-popup/index.html"
+    default_popup: "src/ui/action-popup/index.html",
   },
-	content_security_policy: {
-		extension_pages:
-			"script-src 'self' http://localhost:5173;",
-	},
+  content_security_policy: {
+    extension_pages: "script-src 'self' http://localhost:5173;",
+  },
   content_scripts: [
     {
       matches: ["<all_urls>"],
       js: ["src/content-script/injector.ts"],
       run_at: "document_idle",
       all_frames: true,
-    }
+    },
   ],
   web_accessible_resources: [
     {

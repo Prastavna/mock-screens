@@ -17,13 +17,13 @@ export interface ScreenDetails {
   addEventListener(
     type: "screenschange" | "currentscreenchange",
     listener: (this: ScreenDetails, ev: Event) => any,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ): void;
 
   removeEventListener(
     type: "screenschange" | "currentscreenchange",
     listener: (this: ScreenDetails, ev: Event) => any,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ): void;
 }
 
@@ -34,4 +34,4 @@ declare global {
   }
 }
 
-export {};
+

@@ -8,18 +8,18 @@ const outDir = "dist";
 const browserOutDir = `${outDir}/${browser}`;
 
 export default defineConfig(() => {
-	const browserConfig: UserConfig = {
-		build: {
-			outDir: browserOutDir,
-		},
-		plugins: [
-			crx({
-				manifest,
-				browser,
-				contentScripts: { injectCss: true },
-			}),
-		],
-	};
+  const browserConfig: UserConfig = {
+    build: {
+      outDir: browserOutDir,
+    },
+    plugins: [
+      crx({
+        manifest,
+        browser,
+        contentScripts: { injectCss: true },
+      }),
+    ],
+  };
 
-	return mergeConfig(baseConfig, browserConfig);
+  return mergeConfig(baseConfig, browserConfig);
 });

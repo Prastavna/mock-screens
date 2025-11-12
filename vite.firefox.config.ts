@@ -9,20 +9,20 @@ const browserOutDir = `${outDir}/${browser}`;
 
 // Define browser-specific configuration
 export default defineConfig(() => {
-	// Create browser-specific config
-	const browserConfig: UserConfig = {
-		build: {
-			outDir: browserOutDir,
-		},
-		plugins: [
-			crx({
-				manifest,
-				browser,
-				contentScripts: { injectCss: true },
-			}),
-		],
-	};
+  // Create browser-specific config
+  const browserConfig: UserConfig = {
+    build: {
+      outDir: browserOutDir,
+    },
+    plugins: [
+      crx({
+        manifest,
+        browser,
+        contentScripts: { injectCss: true },
+      }),
+    ],
+  };
 
-	// Merge with base config and return
-	return mergeConfig(baseConfig, browserConfig);
+  // Merge with base config and return
+  return mergeConfig(baseConfig, browserConfig);
 });

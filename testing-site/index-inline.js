@@ -56,16 +56,14 @@ function renderScreens(list) {
         <span>Color depth: ${screen.colorDepth}</span>
         <span>Left / Top: ${screen.left}, ${screen.top}</span>
       </article>
-    `
+    `,
     )
     .join("");
 }
 
 async function requestScreens() {
   if (!("getScreenDetails" in window)) {
-    alert(
-      "window.getScreenDetails() is not supported in this browser build.",
-    );
+    alert("window.getScreenDetails() is not supported in this browser build.");
     return;
   }
 
