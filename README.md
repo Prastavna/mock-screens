@@ -1,5 +1,66 @@
-# Vue 3 + TypeScript + Vite
+# Force Screens
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Force Screens is a browser extension built using TypeScript, and Vite. This project aims to enhance user experience by injecting custom scripts and overriding specific browser behaviors. It includes a popup UI for user interactions and integrates seamlessly with modern web technologies.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Features
+- **Content Script Injection**: Dynamically inject scripts into web pages.
+- **Custom UI**: A popup interface for user actions.
+- **Browser Compatibility**: Designed to work with modern browsers.
+- **TypeScript Support**: Ensures type safety and better developer experience.
+- **Vite for Development**: Fast and optimized development environment.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/force-screens.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd force-screens
+   ```
+
+3. Install dependencies:
+   ```bash
+   bun install
+   ```
+
+4. Build the project:
+   ```bash
+   bun run build
+   ```
+
+5. Load the extension in your browser:
+   - Open your browser's extensions page.
+   - Enable "Developer mode".
+   - Click "Load unpacked" and select the `dist` directory.
+
+## Usage
+- After loading the extension, click on the extension icon in the browser toolbar to open the popup.
+- Use the popup interface to interact with the extension's features.
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add new feature"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+Feel free to reach out if you have any questions or suggestions!
