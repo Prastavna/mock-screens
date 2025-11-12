@@ -31,7 +31,7 @@ const manifestConfig = {
   ],
   web_accessible_resources: [
     {
-      resources: ["src/content-script/override.ts"],
+      resources: ["src/content-script/override.js"],
       matches: ["<all_urls>"],
     },
   ],

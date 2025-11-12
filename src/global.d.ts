@@ -7,7 +7,7 @@ interface ScreenDetailed extends Screen {
   isPrimary: boolean;
 }
 
-interface ScreenDetails {
+export interface ScreenDetails {
   screens: ScreenDetailed[];
   currentScreen: ScreenDetailed;
 
@@ -30,6 +30,7 @@ interface ScreenDetails {
 declare global {
   interface Window {
     getScreenDetails?(): Promise<ScreenDetails>;
+    _isScreenMocked?: boolean;
   }
 }
 

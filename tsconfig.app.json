@@ -12,5 +12,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/global.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/global.d.ts", "src/content-script/override.js"]
 }

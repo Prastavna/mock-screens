@@ -5,46 +5,29 @@ const mockScreens = ({
   numOfScreens?: number,
   firstScreenName?: string
 }) => {
-  if (window.getScreenDetails) {
-    window._isScreenMocked = true;
-    window.getScreenDetails = async () => {
-      console.log("hellllll2")
-      const fakeScreens = {
-        screens: Array(numOfScreens).fill(null).map((_, i) => ({
-          availHeight: 1080,
-          availWidth: 1920,
-          width: 1920,
-          height: 1080,
-          colorDepth: 24,
-          pixelDepth: 24,
-          left: i * 1920,
-          top: 0,
-          isInternal: i === 0,
-          isPrimary: i === 0,
-          label: `Screen ${i + 1}`
-        })),
-      };
+  // Inject the override script
+  const script = document.createElement('script');
+  script.src = chrome.runtime.getURL('src/content-script/override.js');
+  script.onload = function() {
+    // After script loads, send config via custom event
+    const event = new CustomEvent('__MOCK_SCREENS_CONFIG__', {
+      detail: { numOfScreens, firstScreenName }
+    });
+    window.dispatchEvent(event);
+    
+    // Clean up
+    (this as HTMLScriptElement).remove();
+  };
+  (document.head || document.documentElement).appendChild(script);
+};
 
-      return fakeScreens;
-    };
-  }
-
-  // Override screen object properties if needed
-  Object.defineProperty(window, 'getScreenDetails', {
-    value: new Proxy(window.getScreenDetails, {
-      get(target, prop) {
-        return target[prop];
-      }
-    })
-  });
-}
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "mock-screens") {
+    localStorage.setItem("screenName", message.payload.firstScreenName);
+    localStorage.setItem("screenCount", message.payload.numOfScreens);
     mockScreens({
       numOfScreens: message.payload.numOfScreens,
       firstScreenName: message.payload.firstScreenName
-    })
-    sendResponse({ result: "done" });
+    });
   }
 });
