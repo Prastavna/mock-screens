@@ -6,12 +6,16 @@ const manifestConfig = {
   version: packageJson.version,
   description: packageJson.description,
   manifest_version: 3,
-  // icons: {
-  //   "16": "icon16.png",
-  //   "32": "icon32.png",
-  //   "48": "icon48.png",
-  //   "128": "icon128.png",
-  // },
+  icons: {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "36": "icon36.png",
+    "48": "icon48.png",
+    "72": "icon72.png",
+    "96": "icon96.png",
+    "144": "icon144.png",
+    "192": "icon192.png"
+  },
   permissions: ["scripting", "activeTab", "tabs"],
   host_permissions: ["<all_urls>"],
   action: {
