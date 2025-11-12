@@ -2,13 +2,12 @@
 (function() {
   // Listen for configuration from the content script
   window.addEventListener('__MOCK_SCREENS_CONFIG__', (event) => {
-    // const { numOfScreens, firstScreenName } = event.detail;
-    const numOfScreens = parseInt(localStorage.getItem("screenCount") || "1");
-    const firstScreenName = localStorage.getItem("screenName") || "Built-in display";
+    const numOfScreens = parseInt(event.detail.numOfScreens || "1");
+    const firstScreenName = event.detail.firstScreenName || "Built-in display";
     
     if (window.getScreenDetails) {
       window._isScreenMocked = true;
-      
+
       window.getScreenDetails = async function() {
         const fakeScreens = {
           screens: Array(numOfScreens).fill(null).map((_, i) => ({

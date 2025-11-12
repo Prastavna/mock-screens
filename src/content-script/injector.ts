@@ -23,8 +23,6 @@ const mockScreens = ({
 
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "mock-screens") {
-    localStorage.setItem("screenName", message.payload.firstScreenName);
-    localStorage.setItem("screenCount", message.payload.numOfScreens);
     mockScreens({
       numOfScreens: message.payload.numOfScreens,
       firstScreenName: message.payload.firstScreenName
