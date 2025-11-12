@@ -1,6 +1,10 @@
-# Force Screens
+# Mock Screens
 
-Force Screens is a browser extension built using TypeScript, and Vite. This project aims to enhance user experience by injecting custom scripts and overriding specific browser behaviors. It includes a popup UI for user interactions and integrates seamlessly with modern web technologies.
+![Mock Screens](public/icon192.png)
+
+Mock Screens is a browser extension built using TypeScript, and Vite. This project aims to enhance user experience by injecting custom scripts and overriding specific browser behaviors. It includes a popup UI for user interactions and integrates seamlessly with modern web technologies.
+
+**Note:** Firefox support is currently unavailable as `window.getScreenDetails` is not yet supported in Firefox. For more details, visit the [GitHub repository](https://github.com/Prastavna/mock-screens).
 
 ## Features
 - **Content Script Injection**: Dynamically inject scripts into web pages.
