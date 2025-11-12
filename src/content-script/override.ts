@@ -1,19 +1,17 @@
 // Override before any website code runs
-(function() {
+(function () {
   'use strict';
 
-  console.log("hellllll")
-  
   const FAKE_SCREEN_COUNT = 3; // Change this to your desired number
-  
+
   // Override getScreenDetails
   if (window.getScreenDetails) {
     const originalGetScreenDetails = window.getScreenDetails.bind(window);
-    
-  console.log("hellllll1")
-    window.getScreenDetails = async function() {
+
+    console.log("hellllll1")
+    window.getScreenDetails = async function () {
       const realScreens = await originalGetScreenDetails();
-      
+
       // Create fake screen objects
       console.log("hellllll2")
       const fakeScreens = {
@@ -32,11 +30,11 @@
         })),
         currentScreen: realScreens.currentScreen
       };
-      
+
       return fakeScreens;
     };
   }
-  
+
   // Override screen object properties if needed
   Object.defineProperty(window, 'getScreenDetails', {
     value: new Proxy(window.getScreenDetails, {

@@ -13,7 +13,8 @@
     "build:firefox": "vite build --config vite.firefox.config.ts",
     "preview": "vite preview",
     "lint": "oxlint . --fix",
-    "format": "oxfmt ."
+    "format": "oxfmt .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@crxjs/vite-plugin": "^2.2.1"

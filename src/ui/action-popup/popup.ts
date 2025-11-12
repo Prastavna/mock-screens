@@ -1,8 +1,8 @@
-const overrideButton = document.getElementById('overrideScreens');
+const overrideButton = document.getElementById('overrideScreens') as HTMLButtonElement;
 const REQUEST_TYPE = 'REQUEST_FORCE_SCREENS_OVERRIDE';
 const DEFAULT_LABEL = 'Override getScreenDetails';
 
-const getActiveTab = () =>
+const getActiveTab = (): Promise<chrome.tabs.Tab | undefined> =>
   new Promise((resolve, reject) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (chrome.runtime.lastError) {
@@ -14,7 +14,7 @@ const getActiveTab = () =>
     });
   });
 
-const sendOverrideRequest = (tabId) =>
+const sendOverrideRequest = (tabId: number) =>
   new Promise((resolve, reject) => {
     chrome.tabs.sendMessage(tabId, { type: REQUEST_TYPE }, (response) => {
       if (chrome.runtime.lastError) {
