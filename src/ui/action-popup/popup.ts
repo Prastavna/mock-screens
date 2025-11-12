@@ -1,54 +1,20 @@
-const overrideButton = document.getElementById('overrideScreens') as HTMLButtonElement;
-const REQUEST_TYPE = 'REQUEST_FORCE_SCREENS_OVERRIDE';
-const DEFAULT_LABEL = 'Override getScreenDetails';
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("screenForm");
 
-const getActiveTab = (): Promise<chrome.tabs.Tab | undefined> =>
-  new Promise((resolve, reject) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const screenCountInput = document.getElementById("screenCount");
+
+      if (screenCountInput) {
+        const screenCount = (screenCountInput as HTMLInputElement).value;
+        console.log(`Selected number of screens: ${screenCount}`);
+      } else {
+        console.error("Screen count input not found.");
       }
-
-      resolve(tabs?.[0]);
     });
-  });
-
-const sendOverrideRequest = (tabId: number) =>
-  new Promise((resolve, reject) => {
-    chrome.tabs.sendMessage(tabId, { type: REQUEST_TYPE }, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-
-overrideButton?.addEventListener('click', async () => {
-  if (!overrideButton) {
-    return;
-  }
-
-  overrideButton.disabled = true;
-  overrideButton.textContent = 'Requesting override...';
-
-  try {
-    const tab = await getActiveTab();
-    if (!tab?.id) {
-      throw new Error('No active tab found');
-    }
-
-    await sendOverrideRequest(tab.id);
-    overrideButton.textContent = 'Override requested ✅';
-  } catch (error) {
-    console.error('Force Screens: failed to request override', error);
-    overrideButton.textContent = 'Request failed, retry?';
-  } finally {
-    setTimeout(() => {
-      overrideButton.disabled = false;
-      overrideButton.textContent = DEFAULT_LABEL;
-    }, 1500);
+  } else {
+    console.error("Form not found.");
   }
 });
