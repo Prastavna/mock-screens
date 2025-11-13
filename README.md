@@ -1,10 +1,15 @@
 # Mock Screens
 
-![Mock Screens](public/icon192.png)
+<div align="center">
+<img src="public/icon192.png" alt="mock-screens" />
+</div>
 
 Mock Screens is a browser extension built using TypeScript, and Vite. This project aims to enhance user experience by injecting custom scripts and overriding specific browser behaviors. It includes a popup UI for user interactions and integrates seamlessly with modern web technologies.
 
-**Note:** Firefox support is currently unavailable as `window.getScreenDetails` is not yet supported in Firefox. For more details, visit the [GitHub repository](https://github.com/Prastavna/mock-screens).
+> [!WARNING]
+> Firefox support is currently unavailable as `window.getScreenDetails` is not yet supported in Firefox. For more details, visit [can i use](https://caniuse.com/mdn-api_window_getscreendetails).
+
+![Demo](public/Store-Listing-1.png)
 
 ## Features
 - **Content Script Injection**: Dynamically inject scripts into web pages.
@@ -17,12 +22,12 @@ Mock Screens is a browser extension built using TypeScript, and Vite. This proje
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/force-screens.git
+   git clone https://github.com/prastavna/mock-screens.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd force-screens
+   cd mock-screens
    ```
 
 3. Install dependencies:
@@ -67,4 +72,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-Feel free to reach out if you have any questions or suggestions!
+Made with ❤️ by [Prastavna](www.prastavna.com)

@@ -1,9 +1,17 @@
 {
   "name": "mock-screens",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.2.1",
+    "@types/chrome": "^0.1.27",
+    "@types/node": "^24.6.0",
+    "oxfmt": "^0.11.0",
+    "oxlint": "^1.26.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.7"
+  },
   "description": "Mock number of screens",
   "private": true,
-  "version": "0.0.1",
-  "type": "module",
   "scripts": {
     "dev": "npm run dev:chrome",
     "dev:chrome": "vite --config vite.chrome.config.ts",
@@ -16,15 +24,5 @@
     "format": "oxfmt .",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@crxjs/vite-plugin": "^2.2.1"
-  },
-  "devDependencies": {
-    "@types/chrome": "^0.1.27",
-    "@types/node": "^24.6.0",
-    "oxfmt": "^0.11.0",
-    "oxlint": "^1.26.0",
-    "typescript": "~5.9.3",
-    "vite": "^7.1.7"
-  }
+  "type": "module"
 }
