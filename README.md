@@ -72,4 +72,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-Made with ❤️ by [Prastavna](www.prastavna.com)
+Made with ❤️ by [Prastavna](https://prastavna.com)
