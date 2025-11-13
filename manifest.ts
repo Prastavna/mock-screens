@@ -19,6 +19,7 @@ const manifestConfig = {
     "96": "icon96.png",
     "114": "icon114.png",
     "120": "icon120.png",
+    "128": "icon128.png",
     "144": "icon144.png",
     "150": "icon150.png",
     "152": "icon152.png",
